@@ -1,5 +1,7 @@
 var playerNames = [['Name', 'Tournament', 'Entry', 'Sport', 'Entrants', 'Fill%',
-'Start Time', 'Max Entries', 'Draft Size', 'Rounds', 'Rake', 'Close Time']];
+'Start Time', 'Max Entries', 'Draft Size', 'Rounds', 'Rake', 'Close Time', 'Draft Entry', 'Pick Number']];
+
+
 var tourneyName = document.querySelector('.styles__draftPoolName__KoSYy').textContent.trim();
 
 function sleep(ms) {
@@ -12,11 +14,11 @@ function findTournaments() {
 }
 
 function findDivs() {
-    const divs = Array.from(document.querySelectorAll(".styles__contentWrapper__OChjU"));
+    const divs = Array.from(document.querySelectorAll(".styles__draftPoolTeamCell__Qapze"));
     return divs;
 }
 
-async function findPlayerList(tourney_info) {
+async function findPlayerList(tourney_info, draft_id) {
     const playerList = document.querySelectorAll(".styles__playerName__uf8z0");
 
     if (playerList.length > 0) {
@@ -24,6 +26,8 @@ async function findPlayerList(tourney_info) {
             const text = player.textContent.trim();
             var temp_list = [text];
             temp_list = temp_list.concat(tourney_info);
+            temp_list = temp_list.concat([draft_id]);
+            temp_list = temp_list.concat([index + 1]);
             playerNames.push(temp_list);
             console.log(`Player ${index + 1} Text:`, text);
         });
@@ -54,10 +58,11 @@ async function clickNextDiv(index, tourney_info) {
     
     if (index < contentWrappers.length) {
         contentWrappers[index].click();
+        var draft_id = contentWrappers[index].getAttribute('data-draft-pool-entry-id');
         console.log(`Clicked div ${index + 1}`);
         
         setTimeout(async () => {
-            await findPlayerList(tourney_info);
+            await findPlayerList(tourney_info, draft_id);
             clickNextDiv(index + 1, tourney_info);
         }, 250); // Delay of 1 second (1000 milliseconds) between clicks
     } else {
@@ -72,7 +77,7 @@ async function getExposures() {
 
     // Gather tournament information
     document.querySelector(".styles__infoIcon__i2XtS").click();
-    await sleep(300);
+    await sleep(500);
     const tourney_info = [];
 
     var tourney_name = document.querySelector(".styles__title__ZrO6C").textContent.trim();
