@@ -30,4 +30,4 @@ Extract your results from the "Results" page on the Underdog fantasy website for
 
 Note: You'll have to do this for each tournament individually. This was done so that if a tournament is max entered, you don't keep getting the exposures from it over and over as this is run.
 
-Example of resulting CSV file: `Buzzer Beater.csv` located in this repo.
+Example of resulting CSV file: `Triple Play.csv` located in this repo.
