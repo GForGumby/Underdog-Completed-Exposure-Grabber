@@ -2,7 +2,7 @@ var playerNames = [['Name', 'Tournament', 'Entry', 'Sport', 'Entrants', 'Fill%',
 'Start Time', 'Max Entries', 'Draft Size', 'Rounds', 'Rake', 'Close Time', 'Draft Entry', 'Pick Number']];
 
 
-var tourneyName = document.querySelector('.styles__draftPoolName__KoSYy').textContent.trim();
+var tourneyName = document.querySelector('.styles__title__P5hN8').textContent.trim();
 
 function sleep(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));
@@ -76,7 +76,7 @@ async function getExposures() {
     const divs = findDivs();
 
     // Gather tournament information
-    document.querySelector(".styles__infoIcon__i2XtS").click();
+    document.querySelector(".styles__infoIcon__Ac3ZD").click();
     await sleep(500);
     const tourney_info = [];
 
