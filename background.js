@@ -1,6 +1,6 @@
 chrome.action.onClicked.addListener(async (tab) => {
   try {
-    // Inject content.js on click (works in addition to the declared content_script)
+    if (!tab?.id) return;
     await chrome.scripting.executeScript({
       target: { tabId: tab.id },
       files: ["content.js"]
