@@ -1,20 +1,27 @@
 {
-  "manifest_version": 2,
+  "manifest_version": 3,
   "name": "Exposures",
-  "version": "1.0",
-  "description": "Grabs exposures from Completed page.",
-  "permissions": ["storage", "activeTab"],
+  "version": "1.0.0",
+  "description": "Grabs exposures from Completed page and exports a CSV.",
+  "permissions": ["scripting", "activeTab", "storage"],
+  "host_permissions": [
+    "https://www.underdogfantasy.com/*",
+    "https://underdogfantasy.com/*"
+  ],
   "background": {
-    "scripts": ["background.js"],
-    "persistent": false
+    "service_worker": "background.js"
+  },
+  "action": {
+    "default_title": "Exposures"
   },
   "content_scripts": [
     {
-      "matches": ["https://*/*", "http://*/*"],
-      "js": ["content.js"]
+      "matches": [
+        "https://www.underdogfantasy.com/*",
+        "https://underdogfantasy.com/*"
+      ],
+      "js": ["content.js"],
+      "run_at": "document_idle"
     }
-  ],
-  "browser_action": {
-    "default_title": "Exposures"
-  }
+  ]
 }
